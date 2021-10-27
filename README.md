@@ -5,7 +5,7 @@
 3. Record user weight progress
 4. Create food menu plan for future
 
-This app is going to be made with Quasar, Vue 3 UI Framework and vuesax, with Asp Net Core 5.0 as backend
+This app is going to be made with Quasar, Vue 3 UI Framework, with Asp Net Core 5.0 as backend
 
 # Coding standards
 
