@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true,
+		"editor.cursorBlinking": "expand",
+		"editor.cursorSmoothCaretAnimation": true,
+		"editor.cursorSurroundingLines": 4,
+		"editor.formatOnPaste": true
+	}
+}
