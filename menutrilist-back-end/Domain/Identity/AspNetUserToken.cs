@@ -3,22 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
 namespace Menutrilist.Domain.Identity
 {
-    public partial class AspNetUserToken
+    public partial class AspNetUserToken : IdentityUserToken<int>
     {
-        [Key]
-        public string UserId { get; set; }
-        [Key]
-        public string LoginProvider { get; set; }
-        [Key]
-        public string Name { get; set; }
-        public string Value { get; set; }
-
         [ForeignKey(nameof(UserId))]
         [InverseProperty(nameof(AspNetUser.AspNetUserTokens))]
         public virtual AspNetUser User { get; set; }

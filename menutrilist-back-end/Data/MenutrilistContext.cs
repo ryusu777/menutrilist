@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Menutrilist.Domain.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 #nullable disable
 
 namespace Menutrilist.Data
 {
-    public partial class MenutrilistContext : DbContext
+    public partial class MenutrilistContext : IdentityDbContext<AspNetUser, AspNetRole, int, AspNetUserClaim, AspNetUserRole, AspNetUserLogin, AspNetRoleClaim, AspNetUserToken>
     {
         public MenutrilistContext()
         {
@@ -23,6 +24,8 @@ namespace Menutrilist.Data
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
+        public virtual DbSet<AspNetLinkToken> AspNetLinkTokens { get; set; }
+        public virtual DbSet<AspNetRefreshToken> AspNetRefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,6 +44,10 @@ namespace Menutrilist.Data
             modelBuilder.Entity<AspNetUserToken>()
                 .ToTable(nameof(AspNetUserToken))
                 .HasKey(entity => new { entity.UserId, entity.LoginProvider, entity.Name });
+            modelBuilder.Entity<AspNetLinkToken>()
+                .ToTable(nameof(AspNetLinkToken));
+            modelBuilder.Entity<AspNetRefreshToken>()
+                .ToTable(nameof(AspNetRefreshToken));
 
             OnModelCreatingPartial(modelBuilder);
         }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 #nullable disable
@@ -10,16 +11,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Menutrilist.Domain.Identity
 {
     [Index(nameof(UserId), Name = "IX_AspNetUserLogins_UserId")]
-    public partial class AspNetUserLogin
+    public partial class AspNetUserLogin : IdentityUserLogin<int>
     {
-        [Key]
-        public string LoginProvider { get; set; }
-        [Key]
-        public string ProviderKey { get; set; }
-        public string ProviderDisplayName { get; set; }
-        [Required]
-        public string UserId { get; set; }
-
         [ForeignKey(nameof(UserId))]
         [InverseProperty(nameof(AspNetUser.AspNetUserLogins))]
         public virtual AspNetUser User { get; set; }
