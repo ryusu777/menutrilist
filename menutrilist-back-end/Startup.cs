@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Menutrilist.Data;
+using Menutrilist.Installers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,16 +29,11 @@ namespace Menutrilist
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Menutrilist", Version = "v1" });
-            });
-            services.AddDbContext<MenutrilistContext>(options => 
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
+            var installers = typeof(Startup).Assembly.ExportedTypes.Where(x => 
+                typeof(IServiceInstaller).IsAssignableFrom(x) && !x.IsAbstract && !x.IsInterface)
+                .Select(Activator.CreateInstance).Cast<IServiceInstaller>().ToList();
+            
+            installers.ForEach(installer => installer.InstallServices(services, Configuration));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
