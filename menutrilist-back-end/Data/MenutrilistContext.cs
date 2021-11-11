@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Menutrilist.Domain.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Menutrilist.Domain.FatSecret;
 
 #nullable disable
 
@@ -26,28 +27,19 @@ namespace Menutrilist.Data
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetLinkToken> AspNetLinkTokens { get; set; }
         public virtual DbSet<AspNetRefreshToken> AspNetRefreshTokens { get; set; }
+        public virtual DbSet<Food> Foods { get; set; }
+        public virtual DbSet<FoodNutritionServing> FoodNutritionServings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<AspNetRole>().ToTable(nameof(AspNetRole));
-            modelBuilder.Entity<AspNetRoleClaim>().ToTable(nameof(AspNetRoleClaim));
-            modelBuilder.Entity<AspNetUser>().ToTable(nameof(AspNetUser));
-            modelBuilder.Entity<AspNetUserClaim>().ToTable(nameof(AspNetUserClaim));
             modelBuilder.Entity<AspNetUserLogin>()
-                .ToTable(nameof(AspNetUserLogin))
                 .HasKey(entity => new { entity.LoginProvider, entity.ProviderKey });
             modelBuilder.Entity<AspNetUserRole>()
-                .ToTable(nameof(AspNetUserRole))
                 .HasKey(entity => new { entity.RoleId, entity.UserId});
             modelBuilder.Entity<AspNetUserToken>()
-                .ToTable(nameof(AspNetUserToken))
                 .HasKey(entity => new { entity.UserId, entity.LoginProvider, entity.Name });
-            modelBuilder.Entity<AspNetLinkToken>()
-                .ToTable(nameof(AspNetLinkToken));
-            modelBuilder.Entity<AspNetRefreshToken>()
-                .ToTable(nameof(AspNetRefreshToken));
 
             OnModelCreatingPartial(modelBuilder);
         }

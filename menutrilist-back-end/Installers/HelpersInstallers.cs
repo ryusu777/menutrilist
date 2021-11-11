@@ -8,7 +8,9 @@ namespace Menutrilist.Installers
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
+            services.AddHttpClient();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IFatSecretService, FatSecretService>();
         }
     }
 }
