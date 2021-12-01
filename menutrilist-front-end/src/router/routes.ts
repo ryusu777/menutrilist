@@ -13,6 +13,7 @@ const routes: RouteRecordRaw[] = [
       { path: 'search-food-dialog', component: () => import('src/components/search-food/DetailDialog.vue')},
       { path: 'add-to-menu', component: () => import('src/components/search-food/AddToMenu.vue')},
       { path: 'select-schedule', component: () => import('src/components/schedule/Select.vue')},
+      { path: 'eating-schedule', component: () => import('src/components/eating-schedule/EatingSchedule.vue')},
     ],
   },
 
