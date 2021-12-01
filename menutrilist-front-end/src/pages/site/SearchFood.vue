@@ -1,13 +1,13 @@
 <template>
   <q-page class="q-mx-lg">
-  
-    <div class="row justify-center q-mt-xl">
-      <h3 class="col-10 text-bold text-center q-my-sm">Search Food</h3>
-      <form @submit.prevent="signIn" class="col-8 q-gutter-x-lg">
+  <base-card class="q-pa-md q-mt-xl" style="border-radius: 25px">
+    <div class="row justify-center">
+      <form @submit.prevent="signIn" class="col-12 q-gutter-x-lg">
         <base-input
-          class="login-input col-xs-11 col-sm-10"
+          class="login-input"
           v-model="searchFood"
           debounce="500"
+          icon="search"
           placeholder="Search"
         >
           <template v-slot:append>
@@ -22,6 +22,7 @@
         <div class="q-pa-xs col-12">
           <base-card
             :class="props.selected ? 'bg-grey-2' : ''"
+            style="border-radius: 25px"
           >
             <q-card-section horizontal class="row justify-start">
               <q-card-section class="col-9">
@@ -38,6 +39,7 @@
       </template>
     </q-table>
     </div>
+  </base-card>
   </q-page>
 </template>
 
