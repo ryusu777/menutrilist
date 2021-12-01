@@ -14,6 +14,7 @@ const routes: RouteRecordRaw[] = [
       { path: 'add-to-menu', component: () => import('src/components/search-food/AddToMenu.vue')},
       { path: 'select-schedule', component: () => import('src/components/schedule/Select.vue')},
       { path: 'eating-schedule', component: () => import('src/components/eating-schedule/EatingSchedule.vue')},
+      { path: 'food-detail', component: () => import('src/components/search-food/FoodDetail.vue')},
     ],
   },
 
