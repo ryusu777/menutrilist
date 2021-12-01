@@ -4,3 +4,8 @@
   </q-btn>
 </template>
 
+<style>
+.button{
+  border-radius: 25px;
+}
+</style>
