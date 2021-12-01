@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Menutrilist.Controllers.V1
 {
 
-    [Route("api/v1/food")]
+    [Route("api/v1/fat-secret")]
     [ApiController]
     public class FatSecretController : ControllerBase
     {
