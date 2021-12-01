@@ -4,7 +4,7 @@
     <div class="row justify-center">
       <form @submit.prevent="signIn" class="col-12 q-gutter-x-lg">
         <base-input
-          class="login-input"
+          class="login-input text-body1"
           v-model="searchFood"
           debounce="500"
           icon="search"
@@ -20,13 +20,13 @@
       <q-table grid :rows="rows" row-key="id" :filter="filter" hide-header>
       <template v-slot:item="props">
         <div class="q-pa-xs col-12">
-          <base-card
+          <base-card-small
             :class="props.selected ? 'bg-grey-2' : ''"
-            style="border-radius: 25px"
+            style="border-radius: 30px"
           >
             <q-card-section horizontal class="row justify-start">
               <q-card-section class="col-9">
-                <p class="text-bold text-h5 q-pa-none q-ma-none">
+                <p class="text-weight-bold text-h6 q-pa-none q-ma-none">
                   {{ props.row.name }}
                 </p>
               </q-card-section>
@@ -34,7 +34,7 @@
                 <base-button label="Detail" color="primary" @click="showDetail" />
               </q-card-action>
             </q-card-section>
-          </base-card>
+          </base-card-small>
         </div>
       </template>
     </q-table>
@@ -47,6 +47,7 @@
 import { defineComponent, ref } from 'vue';
 import BaseInput from 'components/ui/BaseInput.vue';
 import BaseCard from 'src/components/ui/BaseCard.vue';
+import BaseCardSmall from 'src/components/ui/BaseCardSmall.vue';
 import BaseButton from 'src/components/ui/BaseButton.vue';
 import DetailDialog from 'src/components/search-food/DetailDialog.vue';
 import { useQuasar } from 'quasar';
@@ -83,6 +84,7 @@ export default defineComponent({
   components: {
     BaseInput,
     BaseCard,
+    BaseCardSmall,
     BaseButton
   },
   // data() {
