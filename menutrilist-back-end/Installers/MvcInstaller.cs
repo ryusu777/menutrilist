@@ -15,6 +15,11 @@ namespace Menutrilist.Installers
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Menutrilist", Version = "v1" });
             });
+            services.AddCors(options => {
+                options.AddDefaultPolicy(builder => {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
         }
     }
 }
